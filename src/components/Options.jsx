@@ -11,7 +11,7 @@ const Options = ({question, onSubmit}) => {
 
     const onPress = (index) => {
         setShowAnswer(true);
-        onSubmit(question.question.correctAnswerIndex === index);
+        onSubmit(question.correctAnswerIndex === index);
     };
 
     return (
