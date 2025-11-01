@@ -1,41 +1,39 @@
-import {useState, useEffect} from 'react';
-import Option from './Option';
+import { useState, useEffect } from "react";
+import Option from "./Option";
 
-const Options = ({question, onSubmit}) => {
+const Options = ({ question, onSubmit }) => {
+  const [showAnswer, setShowAnswer] = useState(false);
 
-    const [showAnswer, setShowAnswer] = useState(false);
+  useEffect(() => {
+    setShowAnswer(false);
+  }, [question]);
 
-    useEffect(() => {
-        setShowAnswer(false);
-    }, [question]);
+  const onPress = (index) => {
+    setShowAnswer(true);
+    onSubmit(question.correctAnswerIndex === index);
+  };
 
-    const onPress = (index) => {
-        setShowAnswer(true);
-        onSubmit(question.correctAnswerIndex === index);
-    };
+  return (
+    <div className="w-full mt-8">
+      {question.options.map((option, index) => {
+        let color = "";
 
-    return (
-        <div className="w-full mt-8">
-            {question.options.map((option, index) => {
-                let color = '';
+        if (showAnswer && question.correctAnswerIndex === index)
+          color = "text-green-500";
+        else if (showAnswer) color = "text-red-500";
 
-                if (showAnswer && question.correctAnswerIndex === index)
-                    color = 'text-green-500';
-                else if (showAnswer)
-                    color = 'text-red-500';
-
-                return (
-                    <Option
-                        text={option}
-                        onPress={() => onPress(index)}
-                        color={color}
-                        disabled={showAnswer}
-                        key={index}
-                    />
-                )
-            })}
-        </div>
-    );
-}
+        return (
+          <Option
+            text={option}
+            onPress={() => onPress(index)}
+            color={color}
+            disabled={showAnswer}
+            key={index}
+          />
+        );
+      })}
+    </div>
+  );
+};
 
 export default Options;
