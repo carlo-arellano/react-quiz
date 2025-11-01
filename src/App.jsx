@@ -47,6 +47,7 @@ function App() {
 
   return (
     <div>
+      <div className="flex-row justify-between p-8 bg-gray-600 rounded-md text-white items-center w-full">
         <StatisticBar
           currentQuestion={currentQuestionIndex + 1}
           totalQuestions={allQuestions.length}
@@ -57,8 +58,13 @@ function App() {
           question={allQuestions[currentQuestionIndex]}
           onSubmit={onSubmit}
         />
+      </div>
         {waitingtoAdvance && (
-          <button onClick={advance}>Next</button>
+          <button 
+            className="w-full mt-2"
+            onClick={advance}>
+            NEXT
+          </button>
         )}
     </div>
   );

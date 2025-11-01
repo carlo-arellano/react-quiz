@@ -15,7 +15,7 @@ const Options = ({question, onSubmit}) => {
     };
 
     return (
-        <div>
+        <div className="w-full mt-8">
             {question.options.map((option, index) => {
                 let color = '';
 
